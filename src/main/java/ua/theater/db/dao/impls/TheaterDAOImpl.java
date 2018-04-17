@@ -104,6 +104,8 @@ public class TheaterDAOImpl implements TheaterDAO {
     }
 
 
+
+
     private static final class TheaterMapper implements RowMapper<Theater> {
         public Theater mapRow(ResultSet rs, int rowNum) throws SQLException {
             Theater theater = new Theater();

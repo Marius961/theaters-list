@@ -17,4 +17,6 @@ public interface TheaterDAO {
     void deleteTheaterById(int theaterId);
 
     void updateTheater(Theater theater);
+
+
 }

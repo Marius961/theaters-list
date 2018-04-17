@@ -2,20 +2,19 @@ package ua.theater.db.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ua.theater.db.dao.impls.TheaterDAOImpl;
-import ua.theater.db.dao.interfaces.TheaterDAO;
 import ua.theater.db.models.*;
 import ua.theater.db.services.interfaces.TheatersService;
+import ua.theater.db.validators.ActorValidator;
+import ua.theater.db.validators.PlayValidator;
+import ua.theater.db.validators.TheaterValidator;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -23,10 +22,20 @@ public class HomeController {
 
 
     @Autowired
-    public HomeController(TheatersService theatersService) {
+    public HomeController(TheatersService theatersService,
+                          TheaterValidator theaterValidator,
+                          ActorValidator actorValidator,
+                          PlayValidator playValidator)
+    {
+        this.playValidator = playValidator;
         this.theatersService = theatersService;
+        this.theaterValidator = theaterValidator;
+        this.actorValidator = actorValidator;
     }
 
+    private PlayValidator playValidator;
+    private ActorValidator actorValidator;
+    private TheaterValidator theaterValidator;
     private TheatersService theatersService;
 
     @RequestMapping(value = {"/home", "/"}, method = RequestMethod.GET)
@@ -34,7 +43,6 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
         List<Theater> theaters = theatersService.getTheaters();
-        System.out.println(theaters.get(0).getName());
         modelAndView.addObject("theaters", theaters);
         return modelAndView;
     }
@@ -97,13 +105,22 @@ public class HomeController {
     }
 //
     @RequestMapping(value = "/process-play", method = RequestMethod.POST)
-    public String addPlay(@ModelAttribute Play play) {
-        if (play.getId() == 0) {
-            theatersService.addPlay(play);
-            return "redirect:/get/" + play.getTheaterId();
+    public ModelAndView addPlay(@ModelAttribute Play play, BindingResult bindingResult) {
+        playValidator.validate(play, bindingResult);
+        if (!bindingResult.hasErrors()) {
+            if (play.getId() == 0) {
+                theatersService.addPlay(play);
+                return new ModelAndView("redirect:/get/" + play.getTheaterId());
+            } else {
+                theatersService.updatePlay(play);
+                return new ModelAndView("redirect:/get-play/" + play.getId());
+            }
         } else {
-            theatersService.updateaPlay(play);
-            return "redirect:/get-play/" + play.getId();
+            ModelAndView modelAndView = new ModelAndView();
+            List<Theater> theaters = theatersService.getTheaters();
+            modelAndView.addObject("theaters", theaters);
+            modelAndView.setViewName("newPlay");
+            return modelAndView;
         }
     }
 
@@ -116,15 +133,20 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/process-theater", method = RequestMethod.POST)
-    public String insertNewTheater(@ModelAttribute Theater theater) {
-        if (theater.getId() == 0) {
-            System.out.println("22222");
-            theatersService.addTheater(theater);
-        } else {
-            System.out.println(theater.getTel());
-            theatersService.updateTheater(theater);
-        }
-        return "redirect:home";
+    public String insertNewTheater(@ModelAttribute Theater theater, BindingResult bindingResult) {
+        theaterValidator.validate(theater, bindingResult);
+       if (!bindingResult.hasErrors()) {
+           if (theater.getId() == 0) {
+               System.out.println("22222");
+               theatersService.addTheater(theater);
+           } else {
+               System.out.println(theater.getTel());
+               theatersService.updateTheater(theater);
+           }
+           return "redirect:home";
+       } else {
+           return "addTheater";
+       }
     }
 
     @RequestMapping(value = "/add-actor", method = RequestMethod.GET)
@@ -136,17 +158,21 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/process-actor", method = RequestMethod.POST)
-    public String addActor(@ModelAttribute ActorAndPlay actorAndPlay) {
-        if (actorAndPlay.getRedorectPlayId() == 0) {
-            theatersService.addActorToPlay(actorAndPlay);
-            return "redirect:/get-play/"+ actorAndPlay.getPlayId();
+    public String addActor(@ModelAttribute ActorAndPlay actorAndPlay, BindingResult bindingResult) {
+        actorValidator.validate(actorAndPlay, bindingResult);
+        if (!bindingResult.hasErrors()) {
+            if (actorAndPlay.getRedorectPlayId() == 0) {
+                theatersService.addActorToPlay(actorAndPlay);
+                return "redirect:/get-play/"+ actorAndPlay.getPlayId();
+            } else {
+                Actor actor = new Actor();
+                actor.setId(actorAndPlay.getActorId());
+                actor.setName(actorAndPlay.getActorName());
+                theatersService.updateActor(actor);
+                return "redirect:/get-play/" + actorAndPlay.getRedorectPlayId();
+            }
         } else {
-            Actor actor = new Actor();
-            actor.setId(actorAndPlay.getActorId());
-            actor.setName(actorAndPlay.getActorName());
-            theatersService.updateActor(actor);
-
-            return "redirect:/get-play/" + actorAndPlay.getRedorectPlayId();
+            return "addActor";
         }
     }
 

@@ -25,4 +25,6 @@ public interface PlayDAO {
     void deleteAllActorsForPlay(int playId);
 
     void deleteAllPlayForTheater(int id);
+
+    int getPlaysCount(int theaterId);
 }

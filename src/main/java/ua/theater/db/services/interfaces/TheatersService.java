@@ -37,6 +37,6 @@ public interface TheatersService {
 
     void updateActor(Actor actor);
     void updateTheater(Theater theater);
-    void updateaPlay(Play play);
+    void updatePlay(Play play);
 
 }

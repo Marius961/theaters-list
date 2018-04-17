@@ -6,6 +6,15 @@ public class Theater {
     private String name;
     private String tel;
     private String address;
+    private int PlaysCount;
+
+    public int getPlaysCount() {
+        return PlaysCount;
+    }
+
+    public void setPlaysCount(int playsCount) {
+        PlaysCount = playsCount;
+    }
 
     public int getId() {
         return id;

@@ -53,7 +53,15 @@ public class TheaterServiceImpl implements TheatersService {
 
     @Override
     public List<Theater> getTheaters() {
-        return theaterDAO.getTheaters();
+        List<Theater> theaters = theaterDAO.getTheaters();
+        for (Theater theater : theaters) {
+            theater.setPlaysCount(fillPlaysCount(theater.getId()));
+        }
+        return theaters;
+    }
+
+    private int fillPlaysCount(int theaterId) {
+        return playDAO.getPlaysCount(theaterId);
     }
 
     @Override
@@ -123,7 +131,7 @@ public class TheaterServiceImpl implements TheatersService {
     }
 
     @Override
-    public void updateaPlay(Play play) {
+    public void updatePlay(Play play) {
         playDAO.updatePlay(play);
     }
 

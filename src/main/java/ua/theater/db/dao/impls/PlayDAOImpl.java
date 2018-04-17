@@ -95,8 +95,9 @@ public class PlayDAOImpl implements PlayDAO {
 
     @Override
     public void updatePlay(Play play) {
-        String sql = "UPDATE play SET theater_id=:theaterId, name=:name, date=:date, prod_director=:prodDirector, description=:description";
+        String sql = "UPDATE play SET theater_id=:theaterId, name=:name, date=:date, prod_director=:prodDirector, description=:description WHERE id=:id";
         MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id", play.getId());
         params.addValue("theaterId", play.getTheaterId());
         params.addValue("name", play.getName());
         params.addValue("date", play.getDate());
@@ -137,6 +138,13 @@ public class PlayDAOImpl implements PlayDAO {
         jdbcTemplate.update(sql, params);
     }
 
+    @Override
+    public int getPlaysCount(int theaterId) {
+        String sql = "SELECT count(*) FROM play WHERE theater_id=:theaterId";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("theaterId", theaterId);
+        return jdbcTemplate.queryForObject(sql,params, Integer.class);
+    }
 
     private static final class PlayMapper implements RowMapper<Play> {
         @Override

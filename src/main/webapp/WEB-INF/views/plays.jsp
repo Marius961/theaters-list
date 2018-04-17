@@ -37,7 +37,7 @@
         </form:form>
     </div>
     <div class="container-1 fixed">
-        <label class="label-1">Назва вистави id = ${theater.id}</label>
+        <label class="label-1">Назва вистави</label>
         <label class="label-1">Постановщик</label>
         <label class="label-1">Дата</label>
     </div>

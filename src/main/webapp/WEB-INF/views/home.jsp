@@ -30,7 +30,7 @@
             <label class="content-label">${theater.name}</label>
             <label class="content-label">${theater.address}</label>
             <label class="content-label">${theater.tel}</label>
-            <label class="content-label">29</label>
+            <label class="content-label">${theater.playsCount}</label>
         </div>
     </c:forEach>
     <script rel="script" src="<%=request.getContextPath()%>/resources/js/main.js"></script>

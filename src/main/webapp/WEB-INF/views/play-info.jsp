@@ -15,6 +15,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+    <div class="btn-bar" id="buttons">
+        <button class="content-btn btn-back" onclick="location.href='/home'">Назад</button>
+        <form:form action="/delete-play" modelAttribute="deletedPlay" method="post">
+            <form:hidden path="deletedPlayId" value="${play.id}"/>
+            <button type="submit" class="content-btn btn-delete">Видалити виставу</button>
+        </form:form>
+        <form:form action="/add-play" modelAttribute="play" method="get">
+            <form:hidden path="id" value="${play.id}"/>
+            <form:hidden path="name" value="${play.name}"/>
+            <form:hidden path="description" value="${play.description}"/>
+            <form:hidden path="date" value="${play.date}"/>
+            <form:hidden path="productionDirector" value="${play.productionDirector}"/>
+            <form:hidden path="theaterId" value="${play.theaterId}"/>
+            <button type="submit" class="content-btn btn-edit">Редагувати виставу</button>
+        </form:form>
+    </div>
 </head>
 <body>
 <header>
@@ -28,7 +44,7 @@
             <label class="content-label-about info-label-header">Опис: <img class="btn-menu" style="width: 2%; padding: 0.5%" onclick="closeOpen()" src="<%=request.getContextPath()%>/resources/images/menu.png"></label>
         </div>
         <div class="main-content-about">
-            <label class="content-label-about">${play.description}</label>
+            <p class="content-label-about">${play.description}</p>
         </div>
         <div class="main-content-about">
             <label class="content-label-about info-label-header">
@@ -62,22 +78,6 @@
                     </div>
                 </c:forEach>
             </div>
-        </div>
-        <div class="btn-bar" id="buttons">
-            <button class="content-btn btn-back" onclick="location.href='/home'">Назад</button>
-            <form:form action="/delete-play" modelAttribute="deletedPlay" method="post">
-                <form:hidden path="deletedPlayId" value="${play.id}"/>
-                <button type="submit" class="content-btn btn-delete">Видалити виставу</button>
-            </form:form>
-            <form:form action="/add-play" modelAttribute="play" method="get">
-                <form:hidden path="id" value="${play.id}"/>
-                <form:hidden path="name" value="${play.name}"/>
-                <form:hidden path="description" value="${play.description}"/>
-                <form:hidden path="date" value="${play.date}"/>
-                <form:hidden path="productionDirector" value="${play.productionDirector}"/>
-                <form:hidden path="theaterId" value="${play.theaterId}"/>
-                <button type="submit" class="content-btn btn-edit">Редагувати виставу</button>
-            </form:form>
         </div>
     </main>
 

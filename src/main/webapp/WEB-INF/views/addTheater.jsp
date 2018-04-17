@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
     <title>Title</title>
 </head>
 <body>
@@ -19,16 +19,22 @@
     <form:form action="/process-theater" method="post" modelAttribute="theater">
         <div>
             <form:hidden path="id" value="${theater.id}"/>
-            <form:label path="name">Name of theater</form:label>
+            <form:label path="name">Назва театру:</form:label>
             <form:input path="name" type="text"/>
+            <br>
+            <form:errors path="name" cssClass="error-1"/>
         </div>
         <div>
-            <form:label path="tel">Tel num of theater:</form:label>
-            <form:input path="tel" type="tel"/>
+            <form:label path="tel">Номер телефону театру:</form:label>
+            <form:input path="tel" type="text"/>
+            <br>
+            <form:errors path="tel" cssClass="error-1"/>
         </div>
         <div>
-            <form:label path="address">Addres of theater</form:label>
+            <form:label path="address">Адреса театру:</form:label>
             <form:input path="address" type="text"/>
+            <br>
+            <form:errors path="address" cssClass="error-1"/>
         </div>
         <button type="submit">Submit</button>
     </form:form>
