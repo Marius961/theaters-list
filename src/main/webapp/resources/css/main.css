@@ -1,0 +1,208 @@
+.label-1 {
+    text-align: center;
+    width: 25%;
+    font-size: 2.5vh;
+    margin: 1% 2%;
+    padding: 1%;
+    display: table-cell;
+    color: snow;
+    font-family: "Segoe UI Semibold", serif;
+}
+
+
+.content-label {
+    display: table-cell;
+    text-align: center;
+    width: 25%;
+    font-size: 2.5vh;
+    margin: auto 2%;
+    padding: 1%;
+    border-top: 1px solid snow;
+    color: black;
+    font-family: "Segoe UI Light", serif;
+}
+
+.container-1 {
+    display: table;
+    width: 80%;
+    background-color: black;
+    margin: 0 10% 0.5%;
+}
+
+.main-content {
+    display: table;
+    width: 80%;
+    margin: 0 10%;
+    background-color: #f7f7f7;
+    transition: 0.2s;
+}
+
+.main-content:hover {
+    background-color: #ffa433;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
+
+.content-label:hover {
+    cursor: pointer;
+}
+.fixed {
+    position: sticky;
+}
+
+
+.main-content-about {
+    display: table;
+    width: 80%;
+    margin: 0 10%;
+    background-color: #f7f7f7;
+}
+
+.content-label-about {
+    display: table-cell;
+    text-align: center;
+    width: 25%;
+    font-size: 2.5vh;
+    margin: auto 2%;
+    padding: 1%;
+    color: black;
+    font-family: "Segoe UI Light", serif;
+}
+
+
+
+.info-label-header {
+    font-family: "Segoe UI Semibold", serif;
+}
+
+
+
+.btn-bar {
+    display: none;
+    width: 76%;
+    margin: 0 10%;
+    padding: 2%;
+    background-color: #f7f7f7;
+}
+.content-btn {
+    display: table-cell;
+    text-align: center;
+    font-size: 2.5vh;
+    width: 29%;
+    margin: auto 2%;
+    padding: 1%;
+    border: 0;
+    border-radius: 1px;
+
+}
+
+.btn-back {
+    background-color: #e2e2e2;
+    font-family: "Segoe UI Semibold", serif;
+    color: black;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    color: snow;
+    background-color: rgba(0, 149, 21, 0.79);
+    transition: 0.3s;
+}
+
+.btn-delete {
+    background-color: #e2e2e2;
+    font-family: "Segoe UI Semibold", serif;
+    color: black;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    color: snow;
+    background-color: #dc3800;
+    transition: 0.3s;
+}
+
+.btn-edit {
+    background-color: #e2e2e2;
+    font-family: "Segoe UI Semibold", serif;
+    color: black;
+    transition: 0.3s;
+}
+
+.btn-edit:hover {
+    color: snow;
+    background-color: rgba(0, 28, 159, 0.8);
+    transition: 0.3s;
+}
+
+.btn-add {
+    background-color: black;
+    font-size: 2.5vh;
+    color: snow;
+    border: 0;
+    transition: 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #dc3800;
+    transition: 0.3s;
+}
+
+.btn-menu {
+    padding: 1%;
+    float: right;
+    width: 4%;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: auto 2%;
+}
+
+.btn-menu:hover {
+    background-color: #e2e2e2;
+    transition: 0.3s;
+}
+
+.btn-inline {
+    display: inline-block;
+
+}
+
+
+.actor-name {
+    width: 50%;
+}
+
+.actor-action {
+    width: 25%;
+}
+
+.btn-3 {
+    font-family: "Segoe UI Semibold", serif;
+    background: transparent;
+    border: 0;
+    height: 10%;
+    text-align: center;
+    color: snow;
+}
+.btn-act-edit {
+    background-color: rgba(0, 28, 159, 0.3);
+    transition: 0.3s;
+}
+
+.btn-act-edit:hover {
+    background-color: rgba(0, 28, 159, 0.8);
+    transition: 0.3s;
+}
+.btn-act-delete {
+    background-color: rgba(220, 56, 0, 0.27);
+    transition: 0.3s;
+}
+
+.btn-act-delete:hover {
+    background-color: #dc3800;
+    transition: 0.3s;
+}
+
+
