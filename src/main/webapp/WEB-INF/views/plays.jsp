@@ -22,13 +22,14 @@
         <label class="content-label-about">${theater.name}<img class="btn-menu" onclick="closeOpen()" src="<%=request.getContextPath()%>/resources/images/menu.png"></label>
     </div>
     <div class="btn-bar" id="buttons">
-        <button class="content-btn btn-back" onclick="location.href='/home'">На головну</button>
-        <form:form action="/delete-theater" modelAttribute="deletedTheater" method="post">
+        <div class="table-cell">
+            <button class="content-btn btn-back" onclick="location.href='/home'">На головну</button>
+        </div>
+        <form:form action="/delete-theater" modelAttribute="deletedTheater" method="post" cssClass="table-cell">
             <form:hidden path="deletedTheaterId" value="${theater.id}"/>
             <button type="submit" class="content-btn btn-delete">Видалити театр</button>
         </form:form>
-
-        <form:form method="get" modelAttribute="theater" action="/add-theater">
+        <form:form method="get" modelAttribute="theater" action="/add-theater" cssClass="table-cell">
             <form:hidden path="id" value="${theater.id}"/>
             <form:hidden path="name" value="${theater.name}"/>
             <form:hidden path="tel" value="${theater.tel}"/>

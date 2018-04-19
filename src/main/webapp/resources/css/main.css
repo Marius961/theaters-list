@@ -90,12 +90,9 @@
     display: table-cell;
     text-align: center;
     font-size: 2.5vh;
-    width: 29%;
+    width: 90%;
     margin: auto 2%;
     padding: 1%;
-    border: 0;
-    border-radius: 1px;
-
 }
 
 .btn-back {
@@ -103,6 +100,8 @@
     font-family: "Segoe UI Semibold", serif;
     color: black;
     transition: 0.3s;
+    border: 0;
+    border-radius: 1px;
 }
 
 .btn-back:hover {
@@ -116,6 +115,8 @@
     font-family: "Segoe UI Semibold", serif;
     color: black;
     transition: 0.3s;
+    border: 0;
+    border-radius: 1px;
 }
 
 .btn-delete:hover {
@@ -129,6 +130,8 @@
     font-family: "Segoe UI Semibold", serif;
     color: black;
     transition: 0.3s;
+    border: 0;
+    border-radius: 1px;
 }
 
 .btn-edit:hover {
@@ -208,5 +211,11 @@
 .error-1 {
     color: red;
 }
+
+.table-cell {
+    display: table-cell;
+    width: 25%;
+}
+
 
 
