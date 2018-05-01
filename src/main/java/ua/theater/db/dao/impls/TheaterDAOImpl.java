@@ -1,6 +1,7 @@
 package ua.theater.db.dao.impls;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -46,6 +47,19 @@ public class TheaterDAOImpl implements TheaterDAO {
         try {
             return jdbcTemplate.queryForObject(sql, params, new TheaterMapper());
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Theater> searchTheatersByName(String name) {
+        String sql = "SELECT * FROM theaters WHERE name LIKE :upName or name LIKE :lowName ";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("upName", "%" + name.toUpperCase() + "%");
+        params.addValue("lowName", "%" + name.toLowerCase() + "%");
+        try {
+            return jdbcTemplate.query(sql, params, new TheaterMapper());
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }

@@ -10,6 +10,8 @@ public interface TheaterDAO {
 
     Theater getTheaterById(int theaterId);
 
+    List<Theater> searchTheatersByName(String name);
+
     Theater getTheater(Theater theater);
 
     int insertTheater(Theater theater);

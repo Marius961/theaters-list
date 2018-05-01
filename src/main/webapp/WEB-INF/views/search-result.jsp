@@ -18,10 +18,8 @@
 <body>
 <header>
     <div class="container-1 fixed">
-        <label class="label-1">Назва театру <button class="btn-add" onclick="location.href='/add-theater'">+</button></label>
-        <label class="label-1">Адреса</label>
-        <label class="label-1">Номер телефону</label>
-        <label class="label-1">Кількість вистав <button class="btn-add" onclick="location.href='/add-play'">+</button></label>
+        <label class="label-1">Результати пошуку</label>
+        <button class="label-1" style="background-color: #ffa433" onclick="location.href='/'">Назад</button>
     </div>
 </header>
 <main>

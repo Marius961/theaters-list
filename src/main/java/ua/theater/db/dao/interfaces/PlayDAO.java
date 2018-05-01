@@ -16,6 +16,8 @@ public interface PlayDAO {
 
     Play getPlay(Play play);
 
+    List<Play> searchPlaysByName(String name);
+
     int insertPlay(Play play);
 
     void deletePlayById(int playId);

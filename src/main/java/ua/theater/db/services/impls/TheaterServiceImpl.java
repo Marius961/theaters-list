@@ -52,6 +52,20 @@ public class TheaterServiceImpl implements TheatersService {
     }
 
     @Override
+    public List<Theater> searchTheater(String name) {
+        List<Theater> theaters = theaterDAO.searchTheatersByName(name);
+        for (Theater theater : theaters) {
+            theater.setPlaysCount(fillPlaysCount(theater.getId()));
+        }
+        return theaters;
+    }
+
+    @Override
+    public List<Play> searchPlay(String name) {
+        return playDAO.searchPlaysByName(name);
+    }
+
+    @Override
     public List<Theater> getTheaters() {
         List<Theater> theaters = theaterDAO.getTheaters();
         for (Theater theater : theaters) {

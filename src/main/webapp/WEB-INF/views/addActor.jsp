@@ -16,7 +16,7 @@
 </head>
 <body>
 <div>
-    <form:form action="/process-actor" method="post" modelAttribute="actorAndPlay">
+    <form:form action="/process-actor" method="post" modelAttribute="actorAndPlay" cssClass="main-content">
         <c:if test="${empty actorAndPlay.playName}">
             <h1>Редагування актора</h1>
         </c:if>

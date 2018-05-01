@@ -123,6 +123,19 @@ public class PlayDAOImpl implements PlayDAO {
     }
 
     @Override
+    public List<Play> searchPlaysByName(String name) {
+        String sql = "SELECT * FROM play WHERE name LIKE :upName or name LIKE :lowName ";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("upName", "%" + name.toUpperCase() + "%");
+        params.addValue("lowName", "%" + name.toLowerCase() + "%");
+        try {
+            return jdbcTemplate.query(sql, params, new PlayMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
     public void deleteAllActorsForPlay(int playId) {
         String sql = "DELETE FROM play_map WHERE play_id=:id";
         MapSqlParameterSource params = new MapSqlParameterSource();

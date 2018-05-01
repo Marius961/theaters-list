@@ -17,6 +17,10 @@ public interface TheatersService {
 
     boolean addPlay(Play play);
 
+    List<Theater> searchTheater(String name);
+
+    List<Play> searchPlay(String name);
+
     public List<Theater> getTheaters();
 
     List<Play> getPlays();

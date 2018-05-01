@@ -39,11 +39,26 @@ public class HomeController {
     private TheatersService theatersService;
 
     @RequestMapping(value = {"/home", "/"}, method = RequestMethod.GET)
-    public ModelAndView getHome() {
+    public ModelAndView getHome(@PathVariable(required = false) String name) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        modelAndView.addObject("searchedObject", new SearchedObject());
         List<Theater> theaters = theatersService.getTheaters();
         modelAndView.addObject("theaters", theaters);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/process-search", method = RequestMethod.POST)
+    public ModelAndView search(@ModelAttribute SearchedObject searchedObject) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (!searchedObject.getObjectName().equals("")) {
+            modelAndView.addObject("searchedObject", new SearchedObject());
+            modelAndView.addObject("theaters", theatersService.searchTheater(searchedObject.getObjectName()));
+            modelAndView.addObject("searchedPlays", theatersService.searchPlay(searchedObject.getObjectName()));
+            modelAndView.setViewName("search-result");
+        } else {
+            modelAndView.setViewName("redirect:/");
+        }
         return modelAndView;
     }
 
@@ -93,7 +108,7 @@ public class HomeController {
         theatersService.deletePlayById(play.getDeletedPlayId());
         return "redirect:home";
     }
-//
+
     @RequestMapping(value = "/add-play", method = RequestMethod.GET)
     public ModelAndView getAddForm(@ModelAttribute Play play) {
         ModelAndView modelAndView = new ModelAndView();
