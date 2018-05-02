@@ -118,7 +118,7 @@ public class HomeController {
         modelAndView.addObject("play", play);
         return modelAndView;
     }
-//
+
     @RequestMapping(value = "/process-play", method = RequestMethod.POST)
     public ModelAndView addPlay(@ModelAttribute Play play, BindingResult bindingResult) {
         playValidator.validate(play, bindingResult);

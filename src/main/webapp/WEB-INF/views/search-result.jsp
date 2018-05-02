@@ -19,14 +19,15 @@
 <header>
     <div class="container-1 fixed">
         <label class="label-1">Результати пошуку</label>
-        <button class="label-1" style="background-color: #ffa433" onclick="location.href='/'">Назад</button>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
     </div>
 </header>
 <main>
     <form:form modelAttribute="searchedObject" method="post" action="/process-search" cssClass="main-content-about fixed">
         <div style="width: 40%; margin: 0 30%; display: inline-block">
-            <form:input path="objectName" type="text" cssClass="content-label-about info-label-header" cssStyle="width: 75%"/>
-            <button type="submit" style="width: 15%">Знайти</button>
+            <form:input path="objectName" type="text" cssClass="content-label-about info-label-header" cssStyle="width: 65%"/>
+            <button type="submit" class="btn btn-light" style="width: 20%; padding: 1%; font-size: 3vh">Знайти</button>
         </div>
     </form:form>
     <c:forEach var="theater" items="${theaters}">

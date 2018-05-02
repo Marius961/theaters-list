@@ -12,7 +12,7 @@ public class PlayValidator implements Validator {
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date", "field.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "productionDirector", "productionDirector");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "productionDirector", "field.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "field.empty");
     }
 
@@ -21,4 +21,6 @@ public class PlayValidator implements Validator {
         return false;
     }
 
+
 }
+
